@@ -1,0 +1,7 @@
+[core]
+	editor = vim
+[user]
+	name = Henrik Hansen
+	email = hhansen@econ.au.dk
+[merge]
+	tool = vimdiff
