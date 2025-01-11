@@ -31,3 +31,23 @@ if &term =~ 'xterm'
     let &t_EI = "\e[1 q"  " Cursor to block (normal mode)
 endif
 
+function! OpenOrCreateLyxFile()
+    " Get the current file name without extension
+    let current_file = expand('%:t:r')
+    " Specify the directory where the .lyx file should be searched/created
+    let lyx_dir = '~/OneDrive - Aarhus universitet/Notes/lyx-files/'
+    " Build the full path to the .lyx file
+    let lyx_file = lyx_dir . current_file . '.lyx'
+
+    " Check if the .lyx file exists
+    if !filereadable(lyx_file)
+        " If it doesn't exist, create the .lyx file
+        call system('touch ' . shellescape(lyx_file))
+        echo "Created new .lyx file: " . lyx_file
+    else
+        echo "Opening existing .lyx file: " . lyx_file
+    endif
+
+    " Open the .lyx file using LyX
+    call system('lyx ' . shellescape(lyx_file) . ' &')
+endfunction

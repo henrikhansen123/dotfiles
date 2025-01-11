@@ -1,5 +1,5 @@
 alias s_exam='cd ~/Documents/S_Exam'
 alias gitlog='git log --all --graph --decorate --oneline -n 30'
 alias gs='git status'
-alias note='cd ~/My\ Drive/Notes'
 alias chicago='cd ~/OneDrive\ -\ Aarhus\ universitet/Chicago'
+alias note='cd ~/OneDrive\ -\ Aarhus\ universitet/Notes'
