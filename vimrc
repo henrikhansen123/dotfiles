@@ -1,18 +1,19 @@
 syntax on
 set number
 set relativenumber
+set ignorecase
 set laststatus=2
 set noerrorbells visualbell t_vb=
-set colorcolumn=80
+colorscheme desert
 
 " Recursive search
 set path +=**
 
-" Dsiplay all matching files when we tab complete
+" Display all matching files when we tab complete
 set wildmenu
 
-" Indent only 2 spaces with tab
-set tabstop=2
+" Enter the current millenium
+set nocompatible
 
 " Tweaks for browsing
 let g:netrw_banner=0		" Disable annoying banner
@@ -31,23 +32,8 @@ if &term =~ 'xterm'
     let &t_EI = "\e[1 q"  " Cursor to block (normal mode)
 endif
 
-function! OpenOrCreateLyxFile()
-    " Get the current file name without extension
-    let current_file = expand('%:t:r')
-    " Specify the directory where the .lyx file should be searched/created
-    let lyx_dir = '~/OneDrive - Aarhus universitet/Notes/lyx-files/'
-    " Build the full path to the .lyx file
-    let lyx_file = lyx_dir . current_file . '.lyx'
+" Fly between buffers
+nnoremap <leader>l :ls<CR>:b<space>
 
-    " Check if the .lyx file exists
-    if !filereadable(lyx_file)
-        " If it doesn't exist, create the .lyx file
-        call system('touch ' . shellescape(lyx_file))
-        echo "Created new .lyx file: " . lyx_file
-    else
-        echo "Opening existing .lyx file: " . lyx_file
-    endif
-
-    " Open the .lyx file using LyX
-    call system('lyx ' . shellescape(lyx_file) . ' &')
-endfunction
+" Compile LaTeX
+nnoremap <leader>cl :!pdflatex<space>
