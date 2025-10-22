@@ -12,6 +12,12 @@ set path +=**
 " Display all matching files when we tab complete
 set wildmenu
 
+" Tabulate settings
+set tabstop=4 		" Display width of a tab as =X spaces
+set shiftwidth=4	" use =X space indent for autoindentation
+set softtabstop=4	" Makes backspace adn tab behave consistently
+set noexpandtab		" Keeps tabs as actual tabs
+
 " Enter the current millenium
 set nocompatible
 
