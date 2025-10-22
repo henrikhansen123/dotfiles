@@ -43,3 +43,4 @@ nnoremap <leader>l :ls<CR>:b<space>
 
 " Compile LaTeX
 nnoremap <leader>cl :!pdflatex<space>
+nnoremap <leader>pd :!pdflatex main<CR>
