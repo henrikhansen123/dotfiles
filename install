@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-cd "$(dirname "$0")" || exit 1
-
-for file in bashrc vimrc gitconfig; do
-    ln -sf "$PWD/$file" "$HOME/.$file"
-done
