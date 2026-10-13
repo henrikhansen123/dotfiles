@@ -121,3 +121,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# --------------------- My own stuff -------------
+# OpenCode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Zoxide
+if command -v zoxide >/dev/null 2>&1; then
+    eval "$(zoxide init bash)"
+fi
