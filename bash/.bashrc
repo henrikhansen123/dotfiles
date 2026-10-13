@@ -117,18 +117,33 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# --------------------- My own stuff -------------
+# --------------------- My own stuff ---------------------
+
+# Vi-style command line editing
 set -o vi
+
+# Git aliases
 alias gitlog='git log --all --graph --decorate --oneline -n 30'
 alias gs='git status'
 
-EDITOR=neovim
+# User-installed executables
+export PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 
-# OpenCode
-export PATH="$HOME/.opencode/bin:$PATH"
+# OpenCode (if installed)
+if [ -d "$HOME/.opencode/bin" ]; then
+    export PATH="$HOME/.opencode/bin:$PATH"
+fi
+
+# Prefer locally installed Neovim
+if [ -x "$HOME/.local/opt/nvim-linux-x86_64/bin/nvim" ]; then
+    export PATH="$HOME/.local/opt/nvim-linux-x86_64/bin:$PATH"
+fi
+
+# Default editor
+export EDITOR=nvim
+export VISUAL=nvim
 
 # Zoxide
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init bash)"
 fi
-
