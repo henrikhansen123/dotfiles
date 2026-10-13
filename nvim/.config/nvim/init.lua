@@ -7,7 +7,6 @@ vim.opt.hlsearch = false
 vim.opt.linebreak = true
 vim.opt.visualbell = true
 vim.opt.shortmess:append("I")
-vim.cmd.colorscheme("evening")
 
 -- Recursive search
 vim.opt.path:append("**")
@@ -35,15 +34,33 @@ vim.keymap.set("n", "<leader>cl", ":!pdflatex ")
 vim.keymap.set("n", "<leader>pd", ":!pdflatex main<CR>")
 
 -- Shell
-vim.opt.shell = "C:/PROGRA~1/Git/bin/bash.exe"
+vim.opt.shell = "/bin/bash"
 vim.opt.shellcmdflag = "-c"
-vim.opt.shellxquote = ""
 
 -- lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	-- Tree-sitter
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
+		lazy = false,
+		build = ":TSUpdate",
+		config = function()
+			require("nvim-treesitter").install({
+				"lua",
+				"bash",
+				"python",
+				"r",
+				"latex",
+				"markdown",
+				"markdown_inline",
+				"yaml",
+			})
+		end,
+	},
     "tpope/vim-fugitive",
     {
         "lervag/vimtex",
@@ -116,7 +133,58 @@ require("lazy").setup({
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 		ft = { "markdown" },
 		build = function() vim.fn["mkdp#util#install"]() end,
-	}
+	},
+
+	-- Kanagawa colorscheme
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("kanagawa")
+		end,
+	},
+
+	-- Snacks: file picker and utilities
+	{
+		"folke/snacks.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {
+			picker = { enabled = true },
+		},
+		keys = {
+			{
+				"<leader>ff",
+				function() Snacks.picker.files() end,
+				desc = "Find files",
+			},
+		},
+	},
+
+	-- R integration
+	{
+		"R-nvim/R.nvim",
+		lazy = false,
+	},
+
+	-- OpenCode integration
+	{
+		"nickjvandyke/opencode.nvim",
+		config = function()
+			vim.g.opencode_opts = {}
+		end,
+		keys = {
+			{
+				"<leader>oa",
+				function()
+					require("opencode").ask("@this: ")
+				end,
+				mode = { "n", "x" },
+				desc = "Ask OpenCode",
+			},
+		},
+}
 })
 
 -- Vimtex settings
