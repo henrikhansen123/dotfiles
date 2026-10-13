@@ -1,9 +1,12 @@
-[credential]
-	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
-[core]
-	editor = vim
 [user]
-	name = Henrik Hansen
-	email = hhansen@econ.au.dk
+    name = Henrik Hansen
+    email = hhansen@econ.au.dk
+
+[core]
+    editor = nvim
+
 [merge]
-	tool = vimdiff
+    tool = nvimdiff
+
+[include]
+    path = ~/.gitconfig.local
