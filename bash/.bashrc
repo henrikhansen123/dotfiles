@@ -1,7 +1,3 @@
-set -o vi
-alias gitlog='git log --all --graph --decorate --oneline -n 30'
-alias gs='git status'
-
 # --------------------- Default with WSL --------------------------------------
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -122,6 +118,12 @@ if ! shopt -oq posix; then
 fi
 
 # --------------------- My own stuff -------------
+set -o vi
+alias gitlog='git log --all --graph --decorate --oneline -n 30'
+alias gs='git status'
+
+EDITOR=neovim
+
 # OpenCode
 export PATH="$HOME/.opencode/bin:$PATH"
 
@@ -129,3 +131,4 @@ export PATH="$HOME/.opencode/bin:$PATH"
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init bash)"
 fi
+
